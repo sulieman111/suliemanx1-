@@ -2,87 +2,91 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تعلم مع سليمان — بايثون من الصفر إلى الاحتراف</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1B2A41">
+<title>تعلم بايثون — من الصفر إلى الاحتراف</title>
 <style>
 :root{
-  --ink:#1B2A41;
-  --paper:#F2F5F8;
-  --surface:#FFFFFF;
-  --line:#D5DDE6;
-  --blue:#3B6EA5;
-  --blue-soft:#DCE8F4;
-  --sun:#F6C945;
-  --ok:#217A5C;
-  --ok-soft:#DDF1E8;
-  --bad:#B63D35;
-  --bad-soft:#F8E0DD;
-  --muted:#58677A;
-  --code-bg:#14202F;
-  --code-fg:#E8EEF5;
+  --ink:#1B2A41; --paper:#F2F5F8; --surface:#FFFFFF; --line:#D5DDE6;
+  --blue:#3B6EA5; --blue-soft:#DCE8F4; --sun:#F6C945;
+  --ok:#217A5C; --ok-soft:#DDF1E8; --bad:#B63D35; --bad-soft:#F8E0DD;
+  --muted:#58677A; --code-bg:#14202F; --code-fg:#E8EEF5;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark){
-  :root{
-    --ink:#E8EEF5;
-    --paper:#101822;
-    --surface:#18232F;
-    --line:#2C3B4B;
-    --blue:#7DAEE0;
-    --blue-soft:#223445;
-    --sun:#F6C945;
-    --ok:#5CC29B;
-    --ok-soft:#173528;
-    --bad:#F08A81;
-    --bad-soft:#3B1E1B;
-    --muted:#9AA9BA;
-    --code-bg:#0B121A;
-    --code-fg:#E8EEF5;
-    color-scheme: dark;
-  }
+:root[data-theme="dark"]{
+  --ink:#E8EEF5; --paper:#101822; --surface:#18232F; --line:#2C3B4B;
+  --blue:#7DAEE0; --blue-soft:#223445; --sun:#F6C945;
+  --ok:#5CC29B; --ok-soft:#173528; --bad:#F08A81; --bad-soft:#3B1E1B;
+  --muted:#9AA9BA; --code-bg:#0B121A; --code-fg:#E8EEF5;
+  color-scheme: dark;
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--paper);color:var(--ink);
-  font-family:"Segoe UI","Noto Naskh Arabic","Geeza Pro",Tahoma,system-ui,sans-serif;
-  line-height:1.9;font-size:17px;
-}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Segoe UI","Noto Naskh Arabic","Geeza Pro",Tahoma,system-ui,sans-serif;line-height:1.9;font-size:17px}
 code,textarea,pre{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
 code{direction:ltr;unicode-bidi:isolate;background:var(--blue-soft);color:var(--ink);padding:1px 7px;border-radius:5px;font-size:.92em}
 button{font:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--sun);outline-offset:2px}
-
-/* top bar */
-.top{position:sticky;top:0;z-index:10;background:var(--ink);color:#F2F5F8;display:flex;align-items:center;gap:16px;padding:10px 20px}
-@media (prefers-color-scheme: dark){.top{background:#0A1017}}
-.brand{display:flex;align-items:center;gap:10px;background:none;border:0;color:inherit;padding:0;font-weight:800;font-size:19px}
-.brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#3B6EA5 50%,#F6C945 50%);flex:none}
-.top .grow{flex:1}
-.meter{display:flex;align-items:center;gap:10px;font-size:14px;min-width:0}
-.meter .bar{width:120px;height:8px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
-.meter .bar i{display:block;height:100%;background:var(--sun);width:0;transition:width .4s}
-
 .wrap{max-width:980px;margin:0 auto;padding:0 20px}
 
+/* top + tabs */
+.top{position:sticky;top:0;z-index:30;background:#1B2A41;color:#F2F5F8;display:flex;align-items:center;gap:14px;padding:8px 20px;padding-top:max(8px,env(safe-area-inset-top))}
+:root[data-theme="dark"] .top{background:#0A1017}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:0;color:inherit;padding:0;font-weight:800;font-size:19px;min-height:44px}
+.brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#3B6EA5 50%,#F6C945 50%);flex:none}
+.dnav{display:flex;gap:4px;margin-inline-start:14px}
+.dnav button{background:none;border:0;color:#C9D6E4;padding:8px 14px;border-radius:8px;font-weight:700;min-height:44px}
+.dnav button.on{background:rgba(255,255,255,.14);color:#fff}
+.grow{flex:1}
+.meter{display:flex;align-items:center;gap:10px;font-size:14px;white-space:nowrap}
+.meter .bar{width:110px;height:8px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
+.meter .bar i{display:block;height:100%;background:var(--sun);width:0;transition:width .4s}
+.tabs{display:none;position:fixed;inset-inline:0;bottom:0;z-index:30;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabs button{flex:1;min-height:58px;background:none;border:0;color:var(--muted);font-size:13px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1.4}
+.tabs button .ic{font-size:21px}
+.tabs button.on{color:var(--blue);box-shadow:inset 0 3px 0 var(--sun)}
+@media(max-width:760px){
+  .dnav{display:none}
+  .tabs{display:flex}
+  body{padding-bottom:calc(66px + env(safe-area-inset-bottom));font-size:16.5px}
+  .meter .bar{width:60px}
+  .wrap{padding:0 16px}
+  .brand{font-size:17px}
+}
+
+/* toast */
+.toasts{position:fixed;inset-inline:0;bottom:24px;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;z-index:60}
+@media(max-width:760px){.toasts{bottom:calc(78px + env(safe-area-inset-bottom))}}
+.toast{background:var(--ink);color:var(--paper);padding:10px 20px;border-radius:99px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:pop .25s ease-out}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:none;opacity:1}}
+
 /* hero */
-.hero{padding:56px 0 40px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.hero{padding:48px 0 28px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
 .hero h1{font-size:clamp(38px,6vw,64px);line-height:1.15;margin:0 0 16px;font-weight:900;letter-spacing:-.5px}
 .hero p.lead{font-size:19px;color:var(--muted);margin:0 0 26px;max-width:34em}
-.cta{background:var(--sun);color:#1B2A41;border:0;border-radius:10px;padding:13px 26px;font-weight:800;font-size:18px}
+.cta{background:var(--sun);color:#1B2A41;border:0;border-radius:10px;padding:13px 26px;font-weight:800;font-size:18px;min-height:48px}
 .cta:hover{filter:brightness(.95)}
-.ghost{background:transparent;color:var(--ink);border:2px solid var(--line);border-radius:10px;padding:11px 20px;font-weight:700;margin-inline-start:10px}
+.ghost{background:transparent;color:var(--ink);border:2px solid var(--line);border-radius:10px;padding:11px 20px;font-weight:700;min-height:48px;margin-inline-start:10px}
 .demo{background:var(--code-bg);color:var(--code-fg);border-radius:14px;padding:20px;direction:ltr;text-align:left;box-shadow:0 14px 40px rgba(20,32,47,.25)}
-.demo label{display:block;font-family:inherit;font-size:13px;color:#9FB2C7;direction:rtl;text-align:right;margin-bottom:6px}
-.demo input{width:100%;background:#0B121A;border:1px solid #2C3B4B;color:#fff;border-radius:8px;padding:9px 12px;font-size:16px;margin-bottom:14px;direction:rtl;font-family:inherit}
+.demo label{display:block;font-size:13px;color:#9FB2C7;direction:rtl;text-align:right;margin-bottom:6px}
+.demo input{width:100%;background:#0B121A;border:1px solid #2C3B4B;color:#fff;border-radius:8px;padding:10px 12px;font-size:16px;margin-bottom:14px;direction:rtl;font-family:inherit}
 .demo pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:15px;line-height:1.8}
-.demo .c{color:#7E92A8}.demo .s{color:#F6C945}.demo .k{color:#8CC0F5}
+.demo .s{color:#F6C945}.demo .k{color:#8CC0F5}
 .demo .out{margin-top:12px;padding-top:12px;border-top:1px dashed #2C3B4B;color:#7ee0b4;direction:rtl;text-align:right;font-family:inherit;font-size:17px}
-@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:32px}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:26px;gap:24px}.hero p.lead{font-size:17px}.ghost{margin-inline-start:0;margin-top:10px}}
+
+/* strip */
+.strip{display:flex;border-block:1px solid var(--line);margin:8px 0 10px}
+.strip div{flex:1;text-align:center;padding:12px 4px}
+.strip div+div{border-inline-start:1px solid var(--line)}
+.strip b{display:block;font-size:26px;line-height:1.3}
+.strip span{font-size:13px;color:var(--muted)}
 
 /* roadmap */
+.page{padding-top:26px;padding-bottom:30px}
 h2.sec{font-size:30px;margin:30px 0 6px}
-.sub{color:var(--muted);margin:0 0 24px}
+.page h2.sec{margin-top:6px}
+.sub{color:var(--muted);margin:0 0 20px}
 .level{margin-bottom:34px}
 .level-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .level-head h3{margin:0;font-size:23px}
@@ -90,7 +94,7 @@ h2.sec{font-size:30px;margin:30px 0 6px}
 .path{list-style:none;margin:0;padding:0;position:relative}
 .path::before{content:"";position:absolute;inset-block:14px;inset-inline-start:17px;width:3px;background:var(--line);border-radius:3px}
 .path li{position:relative;padding-inline-start:52px}
-.node{width:100%;text-align:right;background:none;border:0;color:inherit;padding:9px 0;display:flex;align-items:center;gap:10px;border-radius:8px}
+.node{width:100%;text-align:right;background:none;border:0;color:inherit;padding:9px 0;display:flex;align-items:center;gap:10px;border-radius:8px;min-height:54px}
 .node::before{content:attr(data-n);position:absolute;inset-inline-start:0;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--surface);border:3px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:14px}
 .node:hover .t{color:var(--blue)}
 .node .t{font-weight:700;font-size:18px}
@@ -99,8 +103,8 @@ h2.sec{font-size:30px;margin:30px 0 6px}
 .node.cur::before{border-color:var(--sun);background:var(--sun);color:#1B2A41}
 
 /* lesson */
-.lesson{padding:28px 0 60px;max-width:780px;margin:0 auto}
-.crumb{background:none;border:0;color:var(--blue);padding:0;font-weight:700;margin-bottom:10px}
+.lesson{padding:24px 0 40px;max-width:780px;margin:0 auto}
+.crumb{background:none;border:0;color:var(--blue);padding:8px 0;font-weight:700;margin-bottom:4px;min-height:44px}
 .lesson h1{font-size:clamp(28px,4.5vw,40px);line-height:1.3;margin:4px 0 4px}
 .tag{color:var(--muted);font-size:15px;margin-bottom:18px}
 .lesson p,.lesson li{max-width:42em}
@@ -108,47 +112,111 @@ h2.sec{font-size:30px;margin:30px 0 6px}
 .block{margin:26px 0}
 .block h3{margin:0 0 8px;font-size:21px}
 .editor{border-radius:12px;overflow:hidden;background:var(--code-bg);margin:10px 0}
-.editor textarea{display:block;width:100%;min-height:130px;resize:vertical;background:transparent;color:var(--code-fg);border:0;padding:16px;font-size:15px;line-height:1.7;direction:ltr;text-align:left;tab-size:4}
+.editor textarea{display:block;width:100%;min-height:130px;resize:vertical;background:transparent;color:var(--code-fg);border:0;padding:16px;font-size:16px;line-height:1.7;direction:ltr;text-align:left;tab-size:4}
 .editor textarea:focus{outline:none;box-shadow:inset 0 0 0 2px var(--sun)}
-.editor .bar{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#0B121A;border-top:1px solid #2C3B4B}
-.run{background:var(--sun);color:#1B2A41;border:0;border-radius:7px;padding:6px 16px;font-weight:800}
-.mini{background:transparent;border:1px solid #3A4B5E;color:#C9D6E4;border-radius:7px;padding:5px 12px;font-size:14px}
+.editor .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;background:#0B121A;border-top:1px solid #2C3B4B}
+.run{background:var(--sun);color:#1B2A41;border:0;border-radius:8px;padding:8px 18px;font-weight:800;min-height:40px}
+.mini{background:transparent;border:1px solid #3A4B5E;color:#C9D6E4;border-radius:8px;padding:6px 14px;font-size:14px;min-height:40px}
 .status{color:#9FB2C7;font-size:13px;margin-inline-start:auto}
-.output{margin:0;padding:12px 16px;background:#0B121A;color:#7ee0b4;white-space:pre-wrap;direction:ltr;text-align:left;font-size:14px;min-height:0}
+@media(max-width:760px){.status{flex-basis:100%;margin-inline-start:0}}
+.output{margin:0;padding:12px 16px;background:#0B121A;color:#7ee0b4;white-space:pre-wrap;direction:ltr;text-align:left;font-size:14px}
 .output.err{color:#F5A29B}
+.output.win{color:#7ee0b4;font-family:inherit;direction:rtl;text-align:right;font-weight:700}
 .output:empty{display:none}
 .task{background:var(--blue-soft);border-inline-start:5px solid var(--blue);padding:14px 18px;border-radius:8px;margin-bottom:6px}
 .task p{margin:0}
 .quiz .q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
 .quiz .q p{margin:0 0 10px;font-weight:700}
 .opts{display:grid;gap:8px}
-.opt{text-align:right;background:var(--paper);border:2px solid var(--line);color:var(--ink);border-radius:9px;padding:9px 14px}
+.opt{text-align:right;background:var(--paper);border:2px solid var(--line);color:var(--ink);border-radius:9px;padding:10px 14px;min-height:46px}
 .opt:hover:not(:disabled){border-color:var(--blue)}
 .opt.right{background:var(--ok-soft);border-color:var(--ok)}
 .opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
 .opt code{background:transparent;padding:0}
 .fb{margin-top:8px;font-size:15px;min-height:1.2em}
 .fb.good{color:var(--ok)}.fb.no{color:var(--bad)}
-.nav{display:flex;justify-content:space-between;gap:10px;margin-top:34px;flex-wrap:wrap}
-.nav button{border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:10px 20px;font-weight:700}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:34px}
+.nav button{flex:1;border:2px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:12px 20px;font-weight:700;min-height:50px}
 .nav button.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.badge-done{display:inline-block;background:var(--ok-soft);color:var(--ok);border-radius:99px;padding:2px 14px;font-size:14px;font-weight:700;margin-inline-start:8px}
-details.sol summary{cursor:pointer;color:var(--blue);font-weight:700;margin:8px 0}
+.nav button:disabled{opacity:.4}
+.badge-done{display:inline-block;background:var(--ok-soft);color:var(--ok);border-radius:99px;padding:2px 14px;font-size:14px;font-weight:700;margin-inline-start:8px;vertical-align:middle}
+details.sol summary{cursor:pointer;color:var(--blue);font-weight:700;margin:8px 0;min-height:36px}
+
+/* challenges */
+.warn{background:var(--bad-soft);color:var(--ink);border-radius:8px;padding:8px 14px;font-size:15px;margin:0 0 14px}
+.chal{border-top:1px solid var(--line)}
+.chal:last-child{border-bottom:1px solid var(--line)}
+.chal>summary{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 4px;cursor:pointer;font-weight:700;font-size:18px;min-height:56px;list-style:none}
+.chal>summary::-webkit-details-marker{display:none}
+.chal .ok{color:var(--ok)}
+.lvl{font-size:13px;font-weight:700;padding:1px 12px;border-radius:99px;flex:none}
+.lvl.d1{background:var(--ok-soft);color:var(--ok)}
+.lvl.d2{background:var(--blue-soft);color:var(--blue)}
+.lvl.d3{background:var(--bad-soft);color:var(--bad)}
+.chal .body{padding:0 4px 18px}
+.codepre{background:var(--code-bg);color:var(--code-fg);padding:14px 16px;border-radius:10px;direction:ltr;text-align:left;white-space:pre-wrap;font-size:15px;line-height:1.7;margin:6px 0}
+
+/* achievements */
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:10px}
+.badge{border:2px solid var(--sun);background:var(--surface);border-radius:12px;padding:12px 8px;text-align:center;line-height:1.5}
+.badge .ic{font-size:32px;display:block}
+.badge b{display:block;font-size:16px}
+.badge span{font-size:13px;color:var(--muted)}
+.badge.off{border-color:var(--line);opacity:.5;filter:grayscale(1)}
+.pbar{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0}
+.pbar i{display:block;height:100%;background:var(--sun)}
+canvas{width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block;margin:12px 0}
+.field{width:100%;background:var(--surface);color:var(--ink);border:2px solid var(--line);border-radius:10px;padding:10px 14px;font-size:16px;font-family:inherit;min-height:48px}
+textarea.field{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;direction:ltr;text-align:left;min-height:80px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.btn{background:var(--ink);color:var(--paper);border:0;border-radius:10px;padding:11px 20px;font-weight:700;min-height:48px}
+.btn.alt{background:var(--surface);color:var(--ink);border:2px solid var(--line)}
+.btn.gold{background:var(--sun);color:#1B2A41}
+.note{color:var(--muted);font-size:15px}
+.themebtn{background:rgba(255,255,255,.12);border:0;color:#fff;border-radius:8px;min-width:44px;min-height:44px;font-size:18px}
+.seg{display:flex;gap:6px;margin:0 0 16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg button{flex:1;border:0;background:none;color:var(--muted);font-weight:700;border-radius:9px;min-height:44px}
+.seg button.on{background:var(--ink);color:var(--paper)}
+.pz{list-style:none;margin:10px 0;padding:0;display:grid;gap:6px}
+.pzline{display:flex;align-items:stretch;gap:8px;background:var(--code-bg);color:var(--code-fg);border-radius:10px;padding:4px}
+.pl{flex:1;min-width:0;direction:ltr;text-align:left;white-space:pre;overflow-x:auto;padding:8px 12px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:15px;line-height:1.7;align-self:center}
+.mv{display:flex;gap:4px;align-items:center}
+.mv button{width:44px;height:44px;border-radius:8px;border:1px solid #3A4B5E;background:transparent;color:#C9D6E4;font-size:18px}
+.mv button:disabled{opacity:.3}
+.pzres{font-weight:700;margin:6px 0;min-height:1.5em}
+.pzres.good{color:var(--ok)}.pzres.no{color:var(--bad)}
+.field.notes{font-family:inherit;direction:rtl;text-align:right;font-size:16px;min-height:90px}
+input[type=search].field{margin-bottom:18px}
 footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:24px 20px;font-size:15px}
-@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important;animation:none!important}}
 </style>
 </head>
 <body>
 
 <header class="top">
-  <button class="brand" id="homeBtn" aria-label="الصفحة الرئيسية"><span class="mark"></span>تعلم مع سليمان</button>
+  <button class="brand" data-go="/" aria-label="الصفحة الرئيسية"><span class="mark"></span>تعلم بايثون</button>
+  <nav class="dnav" aria-label="التنقل">
+    <button data-go="/" data-tab="home">الدروس</button>
+    <button data-go="/challenges" data-tab="challenges">التدريب</button>
+    <button data-go="/play" data-tab="play">الساحة</button>
+    <button data-go="/me" data-tab="me">إنجازاتي</button>
+  </nav>
   <span class="grow"></span>
-  <div class="meter"><span id="meterTxt">0 من 0 دروس</span><div class="bar"><i id="meterBar"></i></div></div>
+  <div class="meter"><span id="meterTxt"></span><div class="bar"><i id="meterBar"></i></div></div>
+  <button class="themebtn" id="themeBtn" aria-label="تبديل المظهر فاتح أو داكن">◐</button>
 </header>
 
 <main id="app"></main>
 
-<footer>تعلم مع سليمان — بايثون من الصفر إلى الاحتراف. تقدّمك محفوظ أثناء بقاء الصفحة مفتوحة.</footer>
+<footer>تعلم بايثون — من الصفر إلى الاحتراف</footer>
+
+<nav class="tabs" aria-label="التنقل السفلي">
+  <button data-go="/" data-tab="home"><span class="ic">📚</span>الدروس</button>
+  <button data-go="/challenges" data-tab="challenges"><span class="ic">🧩</span>التدريب</button>
+  <button data-go="/play" data-tab="play"><span class="ic">⌨️</span>الساحة</button>
+  <button data-go="/me" data-tab="me"><span class="ic">🏆</span>إنجازاتي</button>
+</nav>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
 <script>
 /* ============ محتوى الدروس ============ */
@@ -687,66 +755,357 @@ quiz:[
 ]}
 ];
 
-/* ============ الحالة ============ */
-const state = {view:"home", i:0, done:new Set(), answers:{}};
+
+
+
+/* ============ دروس إضافية (تُضاف في النهاية حتى لا يتغير ترقيم التقدّم المحفوظ) ============ */
+LESSONS.push(
+{lv:1, title:"النصوص ودوالها", sum:"التقطيع والبحث والتحويل",
+body:`<p>النص في بايثون سلسلة من الحروف، ولكل حرف رقم يبدأ من 0 مثل القوائم تماماً. فـ <code>"abc"[1]</code> تعطي <code>"b"</code>، و <code>"abcdef"[1:4]</code> تعطي <code>"bcd"</code>.</p>
+<p>أهم الدوال الجاهزة: <code>upper</code> و <code>lower</code> لتغيير الحالة، <code>strip</code> لحذف المسافات من الطرفين، <code>replace</code> للاستبدال، <code>split</code> لتقسيم النص إلى قائمة، و <code>join</code> لدمج قائمة في نص. والكلمة <code>in</code> تفحص وجود جزء داخل النص.</p>`,
+code:`s = "  Python is fun  "
+t = s.strip()
+print(t.upper(), len(t))
+print(t[0:6], t[-3:])
+words = t.split(" ")
+print(words)
+print("-".join(words))
+print("fun" in t)`,
+task:"عندك النص \"learn python today\". اطبع النص بحرف أول كبير لكل كلمة (title)، ثم اطبع عدد كلماته (الناتج 3).",
+starter:`text = "learn python today"
+`,
+solution:`text = "learn python today"
+print(text.title())
+print(len(text.split()))`,
+quiz:[
+ {q:"ما ناتج \"abc\"[1] ؟", o:["a","b","c"], a:1},
+ {q:"ماذا ترجع \"a,b\".split(\",\") ؟", o:["نصاً واحداً","قائمة فيها a و b","رقماً"], a:1}
+]},
+
+{lv:2, title:"الحلقات المتداخلة والمصفوفات", sum:"حلقة داخل حلقة وقوائم ثنائية",
+body:`<p>يمكنك وضع حلقة داخل حلقة. الحلقة الداخلية تكتمل كلها مع كل دورة من الخارجية، فلو كانت الخارجية 3 دورات والداخلية 4 يكون التنفيذ الكلي <code>3 × 4 = 12</code> مرة.</p>
+<p>والقائمة التي عناصرها قوائم تُسمى مصفوفة (جدول). نصل لعنصر بالصف ثم العمود: <code>grid[1][2]</code> هو الصف الثاني والعمود الثالث (الترقيم يبدأ من 0).</p>`,
+code:`for i in range(1, 4):
+    for j in range(1, 4):
+        print(i * j, end=" ")
+    print()
+
+grid = [[1, 2, 3], [4, 5, 6]]
+print(grid[1][2])`,
+task:"عندك grid = [[1, 2, 3], [4, 5, 6]]. اطبع مجموع كل صف في سطر مستقل (الناتج 6 ثم 15).",
+starter:`grid = [[1, 2, 3], [4, 5, 6]]
+`,
+solution:`grid = [[1, 2, 3], [4, 5, 6]]
+for row in grid:
+    print(sum(row))`,
+quiz:[
+ {q:"كم مرة يُنفَّذ print داخل حلقتين: range(3) ثم range(4) ؟", o:["7","12","34"], a:1},
+ {q:"ما قيمة [[1, 2], [3, 4]][1][0] ؟", o:["2","3","4"], a:1}
+]},
+
+{lv:3, title:"*args و **kwargs والنطاق", sum:"دوال مرنة ومتغيرات محلية وعامة",
+body:`<p>الرمز <code>*args</code> يجمع أي عدد من المدخلات في tuple، و <code>**kwargs</code> يجمع المدخلات المسماة في قاموس. بهذا تكتب دالة تقبل 2 أو 20 قيمة بدون تغيير تعريفها.</p>
+<p>أما <b>النطاق (scope)</b>: المتغير المعرَّف داخل الدالة محلي ولا يغيّر متغيراً بنفس الاسم خارجها. تجنّب الكلمة <code>global</code> قدر الإمكان، فالأفضل أن ترجع الدالة نتيجة وتستقبل ما تحتاجه كمدخلات.</p>`,
+code:`def total(*nums):
+    return sum(nums)
+
+def profile(**info):
+    for k, v in info.items():
+        print(k, "=", v)
+
+print(total(1, 2, 3, 4))
+profile(name="علي", age=22)
+
+x = 10
+def show():
+    x = 99
+    print(x)
+
+show()
+print(x)`,
+task:"اكتب دالة average(*nums) ترجع المتوسط، وجرّبها على 4 و 8 و 12 (الناتج 8.0).",
+starter:`def average(*nums):
+    pass
+`,
+solution:`def average(*nums):
+    return sum(nums) / len(nums)
+
+print(average(4, 8, 12))`,
+quiz:[
+ {q:"ما نوع args داخل الدالة def f(*args) ؟", o:["list","tuple","dict"], a:1},
+ {q:"في المثال أعلاه، ماذا يطبع print(x) الأخيرة بعد show() ؟", o:["10","99","خطأ"], a:0}
+]},
+
+{lv:4, title:"الأداء وتعقيد الخوارزميات", sum:"لماذا بعض الكود أسرع بمئات المرات",
+body:`<p>عندما تكبر البيانات يفرق الأسلوب كثيراً. نصف سرعة الكود بالتعقيد (Big-O): <code>O(1)</code> زمن ثابت، <code>O(n)</code> يزيد مع عدد العناصر، <code>O(n²)</code> حلقتان متداخلتان (1000 عنصر تعني مليون عملية).</p>
+<p>مثال عملي: البحث داخل <b>list</b> يمر على العناصر واحداً واحداً <code>O(n)</code>، بينما البحث داخل <b>set</b> أو <b>dict</b> شبه فوري <code>O(1)</code>. جرّب المقارنة بنفسك بقياس الزمن.</p>`,
+code:`import time
+
+data_list = list(range(200000))
+data_set = set(data_list)
+
+t = time.perf_counter()
+199999 in data_list
+t1 = time.perf_counter() - t
+
+t = time.perf_counter()
+199999 in data_set
+t2 = time.perf_counter() - t
+
+print("list:", round(t1 * 1000, 3), "ms")
+print("set:", round(t2 * 1000, 3), "ms")`,
+task:"اكتب دالة has_duplicates(nums) سريعة (تمر على القائمة مرة واحدة) ترجع True إذا وُجد تكرار. جرّبها على [1, 2, 3, 1] (الناتج True).",
+starter:`def has_duplicates(nums):
+    pass
+`,
+solution:`def has_duplicates(nums):
+    seen = set()
+    for n in nums:
+        if n in seen:
+            return True
+        seen.add(n)
+    return False
+
+print(has_duplicates([1, 2, 3, 1]))`,
+quiz:[
+ {q:"أسرع طريقة لفحص وجود عنصر في بيانات ضخمة؟", o:["البحث في list","البحث في set","حلقتان متداخلتان"], a:1},
+ {q:"ما تعقيد حلقتين متداخلتين على n عنصر؟", o:["O(n)","O(n²)","O(1)"], a:1}
+]}
+);
+
+const ORDER = LESSONS.map((_,i)=>i).sort((a,b)=> LESSONS[a].lv - LESSONS[b].lv || a - b);
+
+
+/* ============ التحديات ============ */
+const CHALLENGES = [
+{id:"fizz", d:1, title:"FizzBuzz",
+ prompt:`اكتب دالة <code>fizzbuzz(n)</code> ترجع قائمة نصوص من 1 إلى n: إذا كان العدد يقبل القسمة على 3 يُكتب <code>"Fizz"</code>، وعلى 5 يُكتب <code>"Buzz"</code>، وعلى الاثنين <code>"FizzBuzz"</code>، وإلا يُكتب العدد كنص. مثال: <code>fizzbuzz(5)</code> ترجع <code>["1","2","Fizz","4","Buzz"]</code>.`,
+ starter:`def fizzbuzz(n):\n    pass\n`,
+ hint:"افحص القسمة على 15 أولاً، لأنها تعني القسمة على 3 و 5 معاً.",
+ solution:`def fizzbuzz(n):\n    out = []\n    for i in range(1, n + 1):\n        if i % 15 == 0:\n            out.append("FizzBuzz")\n        elif i % 3 == 0:\n            out.append("Fizz")\n        elif i % 5 == 0:\n            out.append("Buzz")\n        else:\n            out.append(str(i))\n    return out`,
+ test:`assert fizzbuzz(5)==["1","2","Fizz","4","Buzz"], "fizzbuzz(5) غير صحيحة"\nassert fizzbuzz(15)[-1]=="FizzBuzz", "العدد 15 يجب أن يعطي FizzBuzz"\nassert len(fizzbuzz(30))==30, "يجب أن ترجع n عنصراً"`},
+
+{id:"pal", d:1, title:"هل هي палиндром؟ (متناظرة)",
+ prompt:`اكتب دالة <code>is_palindrome(s)</code> ترجع True إذا كان النص يُقرأ نفسه من الاتجاهين، مع تجاهل المسافات وحالة الأحرف. مثال: <code>"A man a plan a canal Panama"</code> ترجع True، و <code>"hello"</code> ترجع False.`,
+ starter:`def is_palindrome(s):\n    pass\n`,
+ hint:"نظّف النص أولاً: حوّله لأحرف صغيرة واحذف المسافات، ثم قارنه بمقلوبه s[::-1].",
+ solution:`def is_palindrome(s):\n    t = s.replace(" ", "").lower()\n    return t == t[::-1]`,
+ test:`assert is_palindrome("A man a plan a canal Panama"), "الجملة الأولى متناظرة"\nassert is_palindrome("level")\nassert not is_palindrome("hello"), "hello ليست متناظرة"\nassert is_palindrome(""), "النص الفارغ متناظر"`},
+
+{id:"wc", d:1, title:"عدّاد الكلمات",
+ prompt:`اكتب دالة <code>word_count(text)</code> ترجع قاموساً بعدد تكرار كل كلمة، مع تجاهل حالة الأحرف. مثال: <code>word_count("a b A")</code> ترجع <code>{"a": 2, "b": 1}</code>.`,
+ starter:`def word_count(text):\n    pass\n`,
+ hint:"استخدم text.lower().split() ثم قاموساً وطريقة get(word, 0) + 1.",
+ solution:`def word_count(text):\n    counts = {}\n    for w in text.lower().split():\n        counts[w] = counts.get(w, 0) + 1\n    return counts`,
+ test:`r = word_count("the cat and The dog and the bird")\nassert r=={"the":3,"cat":1,"and":2,"dog":1,"bird":1}, "العدّ غير صحيح"\nassert word_count("")=={}, "النص الفارغ يعطي قاموساً فارغاً"`},
+
+{id:"prime", d:1, title:"الأعداد الأولية",
+ prompt:`اكتب دالة <code>primes_upto(n)</code> ترجع قائمة الأعداد الأولية حتى n (شاملة n). مثال: <code>primes_upto(20)</code> ترجع <code>[2, 3, 5, 7, 11, 13, 17, 19]</code>. تذكّر أن 1 ليس أولياً.`,
+ starter:`def primes_upto(n):\n    pass\n`,
+ hint:"العدد أولي إذا لم يقبل القسمة على أي عدد من 2 حتى جذره التربيعي.",
+ solution:`def primes_upto(n):\n    result = []\n    for k in range(2, n + 1):\n        if all(k % d != 0 for d in range(2, int(k ** 0.5) + 1)):\n            result.append(k)\n    return result`,
+ test:`assert primes_upto(20)==[2,3,5,7,11,13,17,19], "primes_upto(20) غير صحيحة"\nassert primes_upto(1)==[], "لا أولية حتى 1"\nassert len(primes_upto(1000))==168, "يوجد 168 عدداً أولياً حتى 1000"`},
+
+{id:"two", d:2, title:"مجموع رقمين",
+ prompt:`اكتب دالة <code>two_sum(nums, target)</code> ترجع موقعي (index) العنصرين اللذين مجموعهما target. مثال: <code>two_sum([2, 7, 11, 15], 9)</code> ترجع <code>[0, 1]</code> لأن 2 + 7 = 9. تأكد أن الحل سريع وليس حلقتين متداخلتين فقط.`,
+ starter:`def two_sum(nums, target):\n    pass\n`,
+ hint:"احفظ في قاموس كل رقم رأيته وموقعه، وابحث عن target - الرقم الحالي.",
+ solution:`def two_sum(nums, target):\n    seen = {}\n    for i, n in enumerate(nums):\n        if target - n in seen:\n            return [seen[target - n], i]\n        seen[n] = i`,
+ test:`assert sorted(two_sum([2,7,11,15],9))==[0,1]\nassert sorted(two_sum([3,2,4],6))==[1,2], "الحالة الثانية خاطئة"\nassert sorted(two_sum([3,3],6))==[0,1], "الرقم المكرر لا يُستخدم مرتين لنفس الموقع"`},
+
+{id:"caesar", d:2, title:"تشفير قيصر",
+ prompt:`اكتب دالة <code>caesar(text, shift)</code> تُزيح كل حرف إنجليزي صغير بمقدار shift في الأبجدية (وتدور من z إلى a) وتترك المسافات كما هي. مثال: <code>caesar("abc", 1)</code> ترجع <code>"bcd"</code> و <code>caesar("xyz", 3)</code> ترجع <code>"abc"</code>.`,
+ starter:`def caesar(text, shift):\n    pass\n`,
+ hint:"استخدم ord و chr: ord(c) - ord('a') يعطي موقع الحرف من 0 إلى 25، ثم % 26 للدوران.",
+ solution:`def caesar(text, shift):\n    out = ""\n    for c in text:\n        if c.isalpha():\n            out += chr((ord(c) - ord("a") + shift) % 26 + ord("a"))\n        else:\n            out += c\n    return out`,
+ test:`assert caesar("abc",1)=="bcd"\nassert caesar("xyz",3)=="abc", "الدوران من z إلى a غير صحيح"\nassert caesar("hello world",3)=="khoor zruog", "المسافات يجب أن تبقى كما هي"`},
+
+{id:"brk", d:2, title:"الأقواس المتوازنة",
+ prompt:`اكتب دالة <code>is_balanced(s)</code> ترجع True إذا كانت الأقواس <code>() [] {}</code> مغلقة بالترتيب الصحيح. أمثلة: <code>"([]{})"</code> صحيحة، و <code>"(]"</code> و <code>"(("</code> و <code>"())"</code> خاطئة.`,
+ starter:`def is_balanced(s):\n    pass\n`,
+ hint:"استخدم قائمة كمكدّس (stack): أضف القوس المفتوح، وعند القوس المغلق تحقق أنه يطابق آخر مفتوح.",
+ solution:`def is_balanced(s):\n    pairs = {")": "(", "]": "[", "}": "{"}\n    stack = []\n    for c in s:\n        if c in "([{":\n            stack.append(c)\n        elif c in pairs:\n            if not stack or stack.pop() != pairs[c]:\n                return False\n    return not stack`,
+ test:`assert is_balanced("([]{})")\nassert is_balanced(""), "النص الفارغ متوازن"\nassert not is_balanced("(]"), "(] غير متوازنة"\nassert not is_balanced("(("), "(( غير متوازنة"\nassert not is_balanced("())"), "()) غير متوازنة"`},
+
+{id:"ana", d:2, title:"تجميع الكلمات المتجانسة",
+ prompt:`الكلمات المتجانسة (anagrams) لها نفس الحروف بترتيب مختلف. اكتب دالة <code>group_anagrams(words)</code> ترجع قائمة مجموعات. مثال: <code>["eat","tea","tan","ate","nat","bat"]</code> تعطي ثلاث مجموعات: eat/tea/ate و tan/nat و bat (الترتيب غير مهم).`,
+ starter:`def group_anagrams(words):\n    pass\n`,
+ hint:"الكلمات المتجانسة تعطي نفس النتيجة عند ترتيب حروفها: ''.join(sorted(word)). استخدمها مفتاحاً في قاموس.",
+ solution:`def group_anagrams(words):\n    groups = {}\n    for w in words:\n        key = "".join(sorted(w))\n        groups.setdefault(key, []).append(w)\n    return list(groups.values())`,
+ test:`r = group_anagrams(["eat","tea","tan","ate","nat","bat"])\nassert sorted(sorted(g) for g in r)==[["ate","eat","tea"],["bat"],["nat","tan"]], "المجموعات غير صحيحة"`},
+
+{id:"flat", d:3, title:"تسطيح القوائم المتداخلة",
+ prompt:`اكتب دالة <code>flatten(lst)</code> تحوّل قائمة متداخلة بأي عمق إلى قائمة مسطحة. مثال: <code>flatten([1, [2, [3, [4]]], 5])</code> ترجع <code>[1, 2, 3, 4, 5]</code>.`,
+ starter:`def flatten(lst):\n    pass\n`,
+ hint:"استخدم الاستدعاء الذاتي (recursion): إذا كان العنصر قائمة فسطّحه بنفس الدالة، وإلا أضفه.",
+ solution:`def flatten(lst):\n    result = []\n    for item in lst:\n        if isinstance(item, list):\n            result.extend(flatten(item))\n        else:\n            result.append(item)\n    return result`,
+ test:`assert flatten([1,[2,[3,[4]]],5])==[1,2,3,4,5]\nassert flatten([])==[]\nassert flatten([[[]]])==[], "القوائم الفارغة المتداخلة تعطي قائمة فارغة"\nassert flatten([1,2,3])==[1,2,3]`},
+
+{id:"acct", d:3, title:"حساب بنكي آمن",
+ prompt:`أنشئ صنف <code>Account</code> يستقبل رصيداً ابتدائياً ويحفظه في <code>balance</code>، وفيه <code>deposit(x)</code> و <code>withdraw(x)</code>. إذا كان السحب أكبر من الرصيد ارفع <code>ValueError</code> ولا تغيّر الرصيد. مثال: رصيد 100 ثم إيداع 50 يصبح 150.`,
+ starter:`class Account:\n    pass\n`,
+ hint:"داخل withdraw: if x > self.balance: raise ValueError(...) قبل أي خصم.",
+ solution:`class Account:\n    def __init__(self, balance=0):\n        self.balance = balance\n\n    def deposit(self, x):\n        self.balance += x\n\n    def withdraw(self, x):\n        if x > self.balance:\n            raise ValueError("الرصيد غير كافٍ")\n        self.balance -= x`,
+ test:`a = Account(100)\na.deposit(50)\nassert a.balance==150, "الإيداع غير صحيح"\ntry:\n    a.withdraw(500)\n    raise AssertionError("السحب الزائد يجب أن يرفع ValueError")\nexcept ValueError:\n    pass\nassert a.balance==150, "الرصيد لا يتغير عند فشل السحب"\na.withdraw(50)\nassert a.balance==100\nassert Account(0).balance==0`}
+];
+const DIFF = {1:"سهل", 2:"متوسط", 3:"صعب"};
+
+/* ============ الحالة والحفظ ============ */
+const KEY = "learn_with_sulieman_v2";
+const S = {done:new Set(), answers:{}, ch:new Set(), name:"", streak:0, best:0, last:"", badges:new Set(), pz:new Set(), rvxp:0, rvDay:"", perfect:0, notes:{}, play:""};
+let canStore = true;
 const app = document.getElementById("app");
 const $ = (s,r=document)=>r.querySelector(s);
-const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const XP_L = 50, XP_C = 100, XP_P = 40;
+const xp = ()=> S.done.size*XP_L + S.ch.size*XP_C + S.pz.size*XP_P + S.rvxp;
+const plvl = ()=> Math.floor(xp()/250)+1;
 
-function updateMeter(){
-  const n = state.done.size, t = LESSONS.length;
-  $("#meterTxt").textContent = `${n} من ${t} دروس`;
-  $("#meterBar").style.width = (n/t*100)+"%";
+function snapshot(){
+  return {v:2, done:[...S.done], ans:S.answers, ch:[...S.ch], name:S.name, streak:S.streak, best:S.best, last:S.last, badges:[...S.badges], pz:[...S.pz], rvxp:S.rvxp, rvDay:S.rvDay, perfect:S.perfect, notes:S.notes, play:S.play};
+}
+function apply(o){
+  if(!o || typeof o!=="object") return;
+  S.done = new Set((o.done||[]).filter(n=>Number.isInteger(n) && LESSONS[n]));
+  S.answers = o.ans && typeof o.ans==="object" ? o.ans : {};
+  S.ch = new Set((o.ch||[]).filter(id=>CHALLENGES.some(c=>c.id===id)));
+  S.name = typeof o.name==="string" ? o.name.slice(0,40) : "";
+  S.streak = +o.streak||0; S.best = +o.best||0; S.last = typeof o.last==="string" ? o.last : "";
+  S.badges = new Set(o.badges||[]);
+  S.pz = new Set((o.pz||[]).filter(id=>PUZZLES.some(p=>p.id===id)));
+  S.rvxp = +o.rvxp||0; S.rvDay = typeof o.rvDay==="string" ? o.rvDay : ""; S.perfect = +o.perfect||0;
+  S.notes = o.notes && typeof o.notes==="object" ? o.notes : {};
+  S.play = typeof o.play==="string" ? o.play.slice(0,8000) : "";
+}
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(snapshot())); canStore = true; }catch(e){ canStore = false; }
+}
+function load(){
+  try{ const r = localStorage.getItem(KEY); if(r) apply(JSON.parse(r)); }catch(e){ canStore = false; }
+}
+function dayStr(offset=0){ return new Date(Date.now()+offset*864e5).toISOString().slice(0,10); }
+function touchDay(){
+  const t = dayStr(); if(S.last===t) return;
+  S.streak = (S.last===dayStr(-1)) ? S.streak+1 : 1;
+  S.best = Math.max(S.best, S.streak); S.last = t;
 }
 
+/* ============ الشارات ============ */
+const lvDone = l => LESSONS.every((x,i)=> x.lv!==l || S.done.has(i));
+const BADGES = [
+ {id:"first", ic:"🌱", name:"البداية", desc:"أكمل أول درس", t:()=>S.done.size>=1},
+ {id:"l1", ic:"🧱", name:"أساس متين", desc:"أنهِ المستوى الأول", t:()=>lvDone(1)},
+ {id:"l2", ic:"🔧", name:"صاحب أدوات", desc:"أنهِ المستوى الثاني", t:()=>lvDone(2)},
+ {id:"l3", ic:"⚙️", name:"مبرمج متوسط", desc:"أنهِ المستوى الثالث", t:()=>lvDone(3)},
+ {id:"l4", ic:"🚀", name:"طريق الاحتراف", desc:"أنهِ المستوى الرابع", t:()=>lvDone(4)},
+ {id:"half", ic:"🧭", name:"نصف الطريق", desc:"أكمل 10 دروس", t:()=>S.done.size>=10},
+ {id:"c1", ic:"🧩", name:"حلّال مشاكل", desc:"حلّ أول تحدٍّ", t:()=>S.ch.size>=1},
+ {id:"c5", ic:"⚔️", name:"محارب الكود", desc:"حلّ 5 تحديات", t:()=>S.ch.size>=5},
+ {id:"call", ic:"👑", name:"سيد التحديات", desc:"حلّ كل التحديات", t:()=>S.ch.size>=CHALLENGES.length},
+ {id:"pz3", ic:"🧠", name:"مرتّب الأكواد", desc:"حلّ 3 ألغاز ترتيب", t:()=>S.pz.size>=3},
+ {id:"rev", ic:"🎯", name:"ذاكرة قوية", desc:"علامة كاملة في مراجعة", t:()=>S.perfect>=1},
+ {id:"s3", ic:"🔥", name:"ثلاثة أيام متتالية", desc:"تعلّم 3 أيام ورا بعض", t:()=>S.best>=3},
+ {id:"all", ic:"🎓", name:"خريج", desc:"أكمل كل الدروس", t:()=>S.done.size>=LESSONS.length}
+];
+function checkBadges(silent){
+  BADGES.forEach(b=>{
+    if(!S.badges.has(b.id) && b.t()){
+      S.badges.add(b.id);
+      if(!silent) toast(`${b.ic} شارة جديدة: ${b.name}`);
+    }
+  });
+}
+function toast(msg){
+  const box = $("#toasts"), d = document.createElement("div");
+  d.className = "toast"; d.textContent = msg; box.appendChild(d);
+  setTimeout(()=>d.remove(), 3600);
+}
+function updateMeter(){
+  $("#meterTxt").textContent = `⭐ ${xp()} نقطة`;
+  $("#meterBar").style.width = (S.done.size/LESSONS.length*100)+"%";
+}
+function progress(msg){
+  touchDay(); toast(msg); checkBadges(false); save(); updateMeter();
+}
+
+/* ============ التنقل ============ */
+let CUR = "";
+function nav(route){
+  try{
+    if(location.hash !== "#"+route){
+      location.hash = route;
+      setTimeout(()=>{ if(CUR!==route) render(route); }, 60);
+      return;
+    }
+  }catch(e){}
+  render(route);
+}
+function setTabs(k){ document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("on", b.dataset.tab===k)); }
+function render(route){
+  route = route || "/"; CUR = route;
+  const m = route.match(/^\/lesson\/(\d+)$/);
+  if(m && LESSONS[+m[1]]) return viewLesson(+m[1]);
+  if(route==="/challenges") return viewChallenges();
+  if(route==="/puzzles") return viewPuzzles();
+  if(route==="/review") return viewReview();
+  if(route==="/play") return viewPlay();
+  if(route==="/me") return viewMe();
+  return viewHome();
+}
+document.addEventListener("click", e=>{
+  const b = e.target.closest("[data-go]"); if(b) nav(b.dataset.go);
+});
+window.addEventListener("hashchange", ()=>{
+  const r = location.hash.slice(1) || "/"; if(r!==CUR) render(r);
+});
+
 /* ============ الصفحة الرئيسية ============ */
-function renderHome(){
-  state.view = "home";
-  const next = LESSONS.findIndex((_,i)=>!state.done.has(i));
-  let html = `
-  <div class="wrap">
+function viewHome(){
+  setTabs("home"); window.scrollTo(0,0);
+  const next = ORDER.find(i=>!S.done.has(i));
+  let html = `<div class="wrap">
     <section class="hero">
       <div>
-        <h1>تعلم مع سليمان</h1>
-        <p class="lead">كورس بايثون كامل بالعربي: ${LESSONS.length} درساً في أربعة مستويات، كل درس فيه شرح ومثال تشغّله بنفسك وتمرين واختبار قصير. تبدأ من الصفر وتنتهي بمشروع تضعه في ملف أعمالك.</p>
-        <button class="cta" id="startBtn">${state.done.size ? "أكمل من حيث توقفت" : "ابدأ الدرس الأول"}</button>
-        <button class="ghost" id="mapBtn">شاهد خريطة الطريق</button>
+        <h1>تعلم بايثون</h1>
+        <p class="lead">كورس بايثون كامل بالعربي: ${LESSONS.length} درساً في أربعة مستويات، مع تحديات برمجية وألغاز ترتيب ومراجعة سريعة وساحة لتجربة الكود، وتكسب نقاطاً وشارات وشهادة إتمام.</p>
+        <button class="cta" id="startBtn">${S.done.size ? "أكمل من حيث توقفت" : "ابدأ الدرس الأول"}</button>
+        <button class="ghost" id="mapBtn">خريطة الطريق</button>
       </div>
       <div class="demo" aria-live="polite">
         <label for="nm">اكتب اسمك وشاهد بايثون تردّ عليك</label>
-        <input id="nm" value="سليمان" maxlength="24" autocomplete="off">
-        <pre><span class="k">name</span> = <span class="s">"<span id="d1">سليمان</span>"</span>
+        <input id="nm" value="${esc(S.name || "صديقي")}" maxlength="24" autocomplete="off">
+        <pre><span class="k">name</span> = <span class="s">"<span id="d1"></span>"</span>
 <span class="k">print</span>(<span class="s">f"أهلاً يا {name}، يلا نبدأ!"</span>)</pre>
-        <div class="out" id="d2">أهلاً يا سليمان، يلا نبدأ!</div>
+        <div class="out" id="d2"></div>
       </div>
-    </section>
-
-    <section id="map">
-      <h2 class="sec">خريطة الطريق</h2>
-      <p class="sub">الدروس مرتبة، كل درس يبني على الذي قبله. اضغط على أي درس لتبدأ.</p>`;
+    </section>`;
+  if(xp()>0){
+    html += `<div class="strip"><div><b>${xp()}</b><span>نقطة</span></div><div><b>${S.streak}</b><span>أيام متتالية</span></div><div><b>${S.done.size}/${LESSONS.length}</b><span>دروس</span></div><div><b>${S.ch.size}/${CHALLENGES.length}</b><span>تحديات</span></div></div>`;
+  }
+  html += `<section id="map"><h2 class="sec">خريطة الطريق</h2><p class="sub">الدروس مرتبة، وكل درس يبني على الذي قبله.</p><input class="field" id="q" type="search" placeholder="ابحث عن درس (مثال: قوائم)" aria-label="بحث في الدروس">`;
   let n = 0;
   LEVELS.forEach(lv=>{
     html += `<div class="level"><div class="level-head"><h3>${lv.name}</h3><span>${lv.desc}</span></div><ol class="path">`;
-    LESSONS.forEach((l,i)=>{
-      if(l.lv!==lv.id) return;
-      n++;
-      const cls = state.done.has(i) ? "done" : (i===next ? "cur" : "");
-      html += `<li><button class="node ${cls}" data-i="${i}" data-n="${n}"><span><span class="t">${l.title}</span><br><span class="d">${l.sum}</span></span></button></li>`;
+    ORDER.forEach(i=>{
+      const l = LESSONS[i];
+      if(l.lv!==lv.id) return; n++;
+      const cls = S.done.has(i) ? "done" : (i===next ? "cur" : "");
+      html += `<li><button class="node ${cls}" data-go="/lesson/${i}" data-n="${n}"><span><span class="t">${l.title}</span><br><span class="d">${l.sum}</span></span></button></li>`;
     });
     html += `</ol></div>`;
   });
   html += `</section></div>`;
   app.innerHTML = html;
-
   const nm = $("#nm");
-  nm.addEventListener("input",()=>{
-    const v = nm.value.trim() || "صديقي";
-    $("#d1").textContent = v;
-    $("#d2").textContent = `أهلاً يا ${v}، يلا نبدأ!`;
-  });
-  $("#startBtn").onclick = ()=> openLesson(next === -1 ? 0 : next);
+  const upd = ()=>{ const v = nm.value.trim() || "صديقي"; $("#d1").textContent = v; $("#d2").textContent = `أهلاً يا ${v}، يلا نبدأ!`; };
+  nm.addEventListener("input", upd); upd();
+  $("#startBtn").onclick = ()=> nav("/lesson/"+(next===undefined ? ORDER[0] : next));
   $("#mapBtn").onclick = ()=> $("#map").scrollIntoView({behavior:"smooth"});
-  app.querySelectorAll(".node").forEach(b=> b.onclick = ()=> openLesson(+b.dataset.i));
+  $("#q").addEventListener("input", e=>{
+    const v = e.target.value.trim();
+    app.querySelectorAll(".path li").forEach(li=>{ li.hidden = !!v && !li.textContent.includes(v); });
+    app.querySelectorAll(".level").forEach(l=>{ l.hidden = ![...l.querySelectorAll(".path li")].some(li=>!li.hidden); });
+  });
   updateMeter();
 }
 
@@ -763,21 +1122,29 @@ function loadPy(){
   });
   return pyPromise;
 }
+function errText(e){
+  return String(e && e.message || e).trim().split("\n").slice(-3).join("\n");
+}
 
-function makeEditor(code){
+function makeEditor(code, ch){
   const box = document.createElement("div");
   box.className = "editor";
   box.innerHTML = `<textarea spellcheck="false" aria-label="محرر الكود"></textarea>
-    <div class="bar"><button class="run">▶ شغّل</button><button class="mini reset">إعادة</button><button class="mini copy">نسخ</button><span class="status"></span></div>
+    <div class="bar"><button class="run">▶ ${ch?"اختبر حلّي":"شغّل"}</button><button class="mini reset">إعادة</button><button class="mini copy">نسخ</button><button class="mini manual" hidden>حللته خارج الصفحة</button><span class="status"></span></div>
     <pre class="output" aria-live="polite"></pre>`;
   const ta = $("textarea",box), out = $(".output",box), st = $(".status",box);
   ta.value = code;
-  ta.rows = Math.min(16, code.split("\n").length + 1);
+  ta.rows = Math.min(18, code.split("\n").length + 1);
   ta.addEventListener("keydown",e=>{
-    if(e.key==="Tab"){ e.preventDefault(); const p=ta.selectionStart; ta.setRangeText("    ",p,ta.selectionEnd,"end"); }
+    if(e.key==="Tab"){ e.preventDefault(); ta.setRangeText("    ",ta.selectionStart,ta.selectionEnd,"end"); }
   });
-  $(".reset",box).onclick = ()=>{ ta.value = code; out.textContent=""; };
+  $(".reset",box).onclick = ()=>{ ta.value = code; out.textContent=""; out.className="output"; };
   $(".copy",box).onclick = async()=>{ try{ await navigator.clipboard.writeText(ta.value); st.textContent="تم النسخ"; }catch{ st.textContent="انسخ يدوياً"; } setTimeout(()=>st.textContent="",1800); };
+  const solved = ()=>{
+    if(!S.ch.has(ch.id)){ S.ch.add(ch.id); progress(`✅ حللت التحدي! +${XP_C} نقطة`); }
+    const sm = box.closest("details.chal"); if(sm) $(".mark",sm).textContent = "✓";
+  };
+  $(".manual",box).onclick = solved;
   $(".run",box).onclick = async()=>{
     out.className = "output"; out.textContent = "";
     st.textContent = "جارٍ تجهيز بايثون… (أول مرة تأخذ بضع ثوانٍ)";
@@ -787,16 +1154,37 @@ function makeEditor(code){
       py.setStdout({batched:s=>{ buf += s + "\n"; }});
       py.setStderr({batched:s=>{ buf += s + "\n"; }});
       st.textContent = "يعمل…";
-      await py.runPythonAsync(ta.value);
-      out.textContent = buf || "(انتهى التنفيذ بدون مخرجات)";
-      st.textContent = "تم";
+      if(ch){
+        const g = py.globals.get("dict")();
+        try{
+          await py.runPythonAsync(ta.value, {globals:g});
+          try{
+            await py.runPythonAsync(ch.test, {globals:g});
+          }catch(te){
+            out.className = "output err";
+            const msg = errText(te).split("\n").pop();
+            out.textContent = "الاختبار لم ينجح: " + msg.replace(/^AssertionError:\s*/,"");
+            st.textContent = "راجع الحل وجرّب مرة أخرى";
+            return;
+          }
+        }finally{ g.destroy && g.destroy(); }
+        out.className = "output win";
+        out.textContent = (buf ? buf : "") + "✓ اجتزت كل الاختبارات" + (S.ch.has(ch.id) ? "" : ` (+${XP_C} نقطة)`);
+        st.textContent = "";
+        solved();
+      }else{
+        await py.runPythonAsync(ta.value);
+        out.textContent = buf || "(انتهى التنفيذ بدون مخرجات)";
+        st.textContent = "تم";
+      }
     }catch(e){
       out.className = "output err";
       if(e && e.message === "load"){
         out.textContent = "تعذّر تحميل مشغّل بايثون داخل هذه الصفحة. انسخ الكود وجرّبه في python.org أو Google Colab.";
         st.textContent = "";
+        if(ch) $(".manual",box).hidden = false;
       }else{
-        out.textContent = String(e.message || e).split("\n").slice(-4).join("\n");
+        out.textContent = errText(e);
         st.textContent = "حدث خطأ — اقرأ الرسالة، فهي تدلّك على المشكلة";
       }
     }
@@ -805,51 +1193,60 @@ function makeEditor(code){
 }
 
 /* ============ صفحة الدرس ============ */
-function openLesson(i){
-  state.view = "lesson"; state.i = i;
+function viewLesson(i){
+  setTabs("home");
   const L = LESSONS[i];
+  const pos = ORDER.indexOf(i), prevI = ORDER[pos-1], nextI = ORDER[pos+1];
   const lvName = LEVELS.find(v=>v.id===L.lv).name;
   app.innerHTML = `<div class="wrap"><article class="lesson">
     <button class="crumb" id="back">‹ خريطة الطريق</button>
-    <h1>${L.title}${state.done.has(i) ? '<span class="badge-done">مكتمل</span>' : ''}</h1>
+    <h1>${L.title}${S.done.has(i) ? '<span class="badge-done">مكتمل</span>' : ''}</h1>
     <div class="tag">${lvName}</div>
     ${L.body}
     <section class="block"><h3>جرّب بنفسك</h3><p>الكود التالي قابل للتعديل، غيّر فيه وشغّله وشاهد النتيجة.</p><div id="ex"></div></section>
     <section class="block"><h3>تمرين</h3><div class="task"><p>${L.task}</p></div><div id="tk"></div>
       <details class="sol"><summary>اعرض الحل بعد المحاولة</summary><div id="sl"></div></details></section>
     <section class="block quiz"><h3>اختبر فهمك</h3><div id="qz"></div></section>
-    <div class="nav"><button id="prev" ${i===0?"disabled":""}>الدرس السابق</button><button class="primary" id="next">${i===LESSONS.length-1?"العودة للخريطة":"الدرس التالي"}</button></div>
+    <section class="block"><h3>ملاحظاتي</h3><textarea class="field notes" id="note" placeholder="اكتب ما تريد تذكّره من هذا الدرس" aria-label="ملاحظاتي"></textarea></section>
+    <div class="nav"><button id="prev" ${prevI===undefined?"disabled":""}>السابق</button><button class="primary" id="next">${nextI===undefined?"إنجازاتي":"الدرس التالي"}</button></div>
   </article></div>`;
   $("#ex").appendChild(makeEditor(L.code));
   $("#tk").appendChild(makeEditor(L.starter));
   $("#sl").appendChild(makeEditor(L.solution));
   renderQuiz(i);
-  $("#back").onclick = renderHome;
-  $("#prev").onclick = ()=> openLesson(i-1);
-  $("#next").onclick = ()=> i===LESSONS.length-1 ? renderHome() : openLesson(i+1);
-  window.scrollTo({top:0});
+  const note = $("#note"); note.value = S.notes[i] || "";
+  note.addEventListener("input", ()=>{ S.notes[i] = note.value.slice(0,2000); clearTimeout(note._t); note._t = setTimeout(save, 500); });
+  $("#back").onclick = ()=> nav("/");
+  $("#prev").onclick = ()=> { if(prevI!==undefined) nav("/lesson/"+prevI); };
+  $("#next").onclick = ()=> nav(nextI===undefined ? "/me" : "/lesson/"+nextI);
+  window.scrollTo(0,0);
   updateMeter();
 }
 
 function renderQuiz(i){
   const L = LESSONS[i], wrap = $("#qz");
-  state.answers[i] = state.answers[i] || {};
+  S.answers[i] = S.answers[i] || {};
   L.quiz.forEach((q,qi)=>{
     const d = document.createElement("div"); d.className = "q";
     d.innerHTML = `<p>${esc(q.q)}</p><div class="opts"></div><div class="fb" role="status"></div>`;
     const opts = $(".opts",d), fb = $(".fb",d);
     q.o.forEach((o,oi)=>{
-      const b = document.createElement("button"); b.className = "opt"; b.innerHTML = `<code>${esc(o)}</code>`;
-      if(!/[A-Za-z_(\[{"'=]/.test(o)) b.innerHTML = esc(o);
+      const b = document.createElement("button"); b.className = "opt";
+      b.innerHTML = /[A-Za-z_(\[{"'=]/.test(o) ? `<code>${esc(o)}</code>` : esc(o);
+      const markRight = ()=>{
+        b.classList.add("right"); fb.className="fb good"; fb.textContent="إجابة صحيحة";
+        opts.querySelectorAll("button").forEach(x=>x.disabled=true);
+      };
+      if(S.answers[i][qi] && oi===q.a) markRight();
       b.onclick = ()=>{
         if(oi===q.a){
-          b.classList.add("right"); fb.className="fb good"; fb.textContent="إجابة صحيحة";
-          opts.querySelectorAll("button").forEach(x=>x.disabled=true);
-          state.answers[i][qi] = true;
-          if(Object.keys(state.answers[i]).length === L.quiz.length && !state.done.has(i)){
-            state.done.add(i); updateMeter();
+          markRight();
+          S.answers[i][qi] = true;
+          if(Object.keys(S.answers[i]).length === L.quiz.length && !S.done.has(i)){
+            S.done.add(i);
             $(".lesson h1").insertAdjacentHTML("beforeend",'<span class="badge-done">مكتمل</span>');
-          }
+            progress(`🎉 أحسنت! أكملت الدرس +${XP_L} نقطة`);
+          }else{ save(); }
         }else{
           b.classList.add("wrong"); b.disabled = true; fb.className="fb no"; fb.textContent="ليست صحيحة، جرّب خياراً آخر";
         }
@@ -860,8 +1257,274 @@ function renderQuiz(i){
   });
 }
 
-$("#homeBtn").onclick = renderHome;
-renderHome();
+/* ============ صفحة التحديات ============ */
+function viewChallenges(){
+  setTabs("challenges"); window.scrollTo(0,0);
+  app.innerHTML = `<div class="wrap page">${seg("challenges")}
+    <h2 class="sec">التحديات البرمجية</h2>
+    <p class="sub">تم حلّ ${S.ch.size} من ${CHALLENGES.length}. اكتب الحل ثم اضغط «اختبر حلّي»، وتُشغَّل عليه اختبارات مخفية تلقائياً. كل تحدٍّ ينجح يعطيك ${XP_C} نقطة.</p>
+    <p class="warn">تنبيه: تجنّب الحلقات اللانهائية (مثل while True بلا break) لأن الصفحة ستتجمّد معها.</p>
+    <div id="chl"></div></div>`;
+  const list = $("#chl");
+  CHALLENGES.forEach(c=>{
+    const d = document.createElement("details"); d.className = "chal";
+    d.innerHTML = `<summary><span><span class="mark ok">${S.ch.has(c.id)?"✓":""}</span> ${c.title}</span><span class="lvl d${c.d}">${DIFF[c.d]}</span></summary>
+      <div class="body"><p>${c.prompt}</p><div class="ed"></div>
+      <details class="sol"><summary>تلميح</summary><p>${c.hint}</p></details>
+      <details class="sol"><summary>اعرض الحل</summary><pre class="codepre">${esc(c.solution)}</pre></details></div>`;
+    $(".ed",d).appendChild(makeEditor(c.starter, c));
+    list.appendChild(d);
+  });
+  updateMeter();
+}
+
+/* ============ أدوات مشتركة ============ */
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function seg(k){
+  const items = [["challenges","/challenges","تحديات"],["puzzles","/puzzles","ألغاز"],["review","/review","مراجعة"]];
+  return `<div class="seg" role="tablist">${items.map(([id,r,t])=>`<button data-go="${r}" class="${id===k?"on":""}">${t}</button>`).join("")}</div>`;
+}
+
+/* ============ ألغاز ترتيب الكود ============ */
+const PUZZLES = [
+{id:"p1", title:"عدّ تنازلي", out:"3 ثم 2 ثم 1 ثم انطلق!",
+ lines:['n = 3','while n > 0:','    print(n)','    n -= 1','print("انطلق!")']},
+{id:"p2", title:"مجموع الأعداد الزوجية", out:"30",
+ lines:['total = 0','for i in range(1, 11):','    if i % 2 == 0:','        total += i','print(total)']},
+{id:"p3", title:"دالة المضروب", out:"120",
+ lines:['def factorial(n):','    result = 1','    for i in range(2, n + 1):','        result *= i','    return result','print(factorial(5))']},
+{id:"p4", title:"التعامل مع الخطأ", out:"إدخال غير صالح",
+ lines:['try:','    x = int("abc")','except ValueError:','    print("إدخال غير صالح")']},
+{id:"p5", title:"صنف العدّاد", out:"1",
+ lines:['class Counter:','    def __init__(self):','        self.n = 0','    def add(self):','        self.n += 1','c = Counter()','c.add()','print(c.n)']}
+];
+
+function viewPuzzles(){
+  setTabs("challenges"); window.scrollTo(0,0);
+  app.innerHTML = `<div class="wrap page">${seg("puzzles")}
+    <h2 class="sec">ألغاز ترتيب الكود</h2>
+    <p class="sub">رتّب الأسطر لتصبح برنامجاً صحيحاً، وحرّك السطر بالأسهم. تم حلّ ${S.pz.size} من ${PUZZLES.length}، وكل لغز يعطيك ${XP_P} نقطة.</p>
+    <div id="pzl"></div></div>`;
+  const root = $("#pzl");
+  PUZZLES.forEach(p=>{
+    const d = document.createElement("details"); d.className = "chal";
+    d.innerHTML = `<summary><span><span class="mark ok">${S.pz.has(p.id)?"✓":""}</span> ${p.title}</span><span class="lvl d2">${p.lines.length} أسطر</span></summary>
+      <div class="body"><p>الناتج المطلوب: <code>${esc(p.out)}</code></p><ul class="pz"></ul>
+      <div class="row"><button class="btn gold chk">تحقق من الترتيب</button><button class="btn alt shf">اخلط من جديد</button></div>
+      <p class="pzres" role="status"></p></div>`;
+    const ul = $(".pz",d), res = $(".pzres",d);
+    let order = [];
+    const mix = ()=>{
+      const base = p.lines.map((_,k)=>k);
+      do{ order = shuffle(base.slice()); }while(order.every((v,k)=>v===k));
+      res.textContent = ""; paint();
+    };
+    const paint = ()=>{
+      ul.innerHTML = "";
+      order.forEach((idx,pos)=>{
+        const li = document.createElement("li"); li.className = "pzline";
+        li.innerHTML = `<span class="pl"></span><span class="mv"><button type="button" aria-label="تحريك للأعلى">↑</button><button type="button" aria-label="تحريك للأسفل">↓</button></span>`;
+        $(".pl",li).textContent = p.lines[idx];
+        const [up,dn] = li.querySelectorAll("button");
+        up.disabled = pos===0; dn.disabled = pos===order.length-1;
+        up.onclick = ()=>{ [order[pos-1],order[pos]] = [order[pos],order[pos-1]]; res.textContent=""; paint(); };
+        dn.onclick = ()=>{ [order[pos+1],order[pos]] = [order[pos],order[pos+1]]; res.textContent=""; paint(); };
+        ul.appendChild(li);
+      });
+    };
+    $(".shf",d).onclick = mix;
+    $(".chk",d).onclick = ()=>{
+      const right = order.filter((idx,pos)=>idx===pos).length;
+      if(right===p.lines.length){
+        res.className = "pzres good";
+        res.textContent = `✓ ترتيب صحيح! الناتج: ${p.out}`;
+        if(!S.pz.has(p.id)){ S.pz.add(p.id); $(".mark",d).textContent = "✓"; progress(`🧠 حللت اللغز! +${XP_P} نقطة`); }
+      }else{
+        res.className = "pzres no";
+        res.textContent = `${right} من ${p.lines.length} أسطر في مكانها الصحيح. حاول مرة أخرى.`;
+      }
+    };
+    mix();
+    root.appendChild(d);
+  });
+  updateMeter();
+}
+
+/* ============ المراجعة السريعة ============ */
+const RV = {qs:[], i:0, ok:0};
+function viewReview(){
+  setTabs("challenges"); window.scrollTo(0,0);
+  const pool = [];
+  LESSONS.forEach((L,li)=> L.quiz.forEach(q=> pool.push({q, li})));
+  const mine = pool.filter(p=>S.done.has(p.li));
+  RV.qs = shuffle((mine.length>=6 ? mine : pool).slice()).slice(0,8);
+  RV.i = 0; RV.ok = 0;
+  drawReview();
+}
+function drawReview(){
+  const total = RV.qs.length;
+  if(RV.i >= total){
+    const first = S.rvDay !== dayStr();
+    const gain = first ? RV.ok*5 : 0;
+    app.innerHTML = `<div class="wrap page">${seg("review")}
+      <h2 class="sec">انتهت المراجعة</h2>
+      <p class="sub">نتيجتك ${RV.ok} من ${total}.${gain ? ` كسبت ${gain} نقطة.` : (first ? "" : " النقاط تُمنح لأول مراجعة في اليوم.")}</p>
+      <div class="pbar"><i style="width:${Math.round(RV.ok/total*100)}%"></i></div>
+      <div class="row"><button class="btn gold" id="again">جولة جديدة</button><button class="btn alt" data-go="/">الدروس</button></div></div>`;
+    $("#again").onclick = viewReview;
+    if(first){ S.rvDay = dayStr(); S.rvxp += gain; }
+    if(RV.ok===total) S.perfect++;
+    progress(RV.ok===total ? "🎯 علامة كاملة!" : "تمت المراجعة");
+    return;
+  }
+  const {q} = RV.qs[RV.i];
+  const opts = shuffle(q.o.map((t,k)=>({t, right:k===q.a})));
+  app.innerHTML = `<div class="wrap page">${seg("review")}
+    <p class="sub">سؤال ${RV.i+1} من ${total}</p>
+    <div class="pbar"><i style="width:${RV.i/total*100}%"></i></div>
+    <div class="quiz"><div class="q"><p>${esc(q.q)}</p><div class="opts"></div><div class="fb" role="status"></div></div></div>
+    <div class="row"><button class="btn" id="nx" hidden>${RV.i===total-1?"إنهاء":"التالي"}</button></div></div>`;
+  const box = $(".opts"), fb = $(".fb");
+  opts.forEach(o=>{
+    const b = document.createElement("button"); b.className = "opt";
+    b.innerHTML = /[A-Za-z_(\[{"'=]/.test(o.t) ? `<code>${esc(o.t)}</code>` : esc(o.t);
+    b.onclick = ()=>{
+      box.querySelectorAll("button").forEach((x,k)=>{ x.disabled = true; if(opts[k].right) x.classList.add("right"); });
+      if(o.right){ RV.ok++; fb.className = "fb good"; fb.textContent = "إجابة صحيحة"; }
+      else{ b.classList.add("wrong"); fb.className = "fb no"; fb.textContent = "الإجابة الصحيحة موضّحة بالأخضر"; }
+      $("#nx").hidden = false; $("#nx").focus();
+    };
+    box.appendChild(b);
+  });
+  $("#nx").onclick = ()=>{ RV.i++; drawReview(); window.scrollTo(0,0); };
+}
+
+/* ============ ساحة التجربة ============ */
+const SNIPS = {
+ "مرحباً":`print("مرحباً بالعالم")\nname = "صديقي"\nprint(f"أهلاً يا {name}")`,
+ "حلقة":`for i in range(1, 6):\n    print(i, "×", 7, "=", i * 7)`,
+ "دالة":`def square(n):\n    return n * n\n\nprint([square(n) for n in range(1, 6)])`,
+ "صنف":`class Dog:\n    def __init__(self, name):\n        self.name = name\n\n    def bark(self):\n        return f"{self.name}: هاو!"\n\nprint(Dog("ريكس").bark())`,
+ "قاموس":`scores = {"علي": 90, "منى": 95}\nfor k, v in scores.items():\n    print(k, v)\nprint(max(scores, key=scores.get))`
+};
+function viewPlay(){
+  setTabs("play"); window.scrollTo(0,0);
+  app.innerHTML = `<div class="wrap page"><h2 class="sec">ساحة التجربة</h2>
+    <p class="sub">اكتب أي كود بايثون وشغّله. كودك يُحفظ تلقائياً. اختر مثالاً للبدء:</p>
+    <div class="row" id="snips"></div><div id="pg"></div></div>`;
+  const first = Object.keys(SNIPS)[0];
+  const ed = makeEditor(S.play || SNIPS[first]);
+  const ta = $("textarea", ed);
+  ta.rows = 14;
+  let t = null;
+  ta.addEventListener("input", ()=>{ S.play = ta.value.slice(0,8000); clearTimeout(t); t = setTimeout(save, 600); });
+  $("#pg").appendChild(ed);
+  Object.keys(SNIPS).forEach(k=>{
+    const b = document.createElement("button"); b.className = "btn alt"; b.textContent = k;
+    b.onclick = ()=>{ ta.value = SNIPS[k]; S.play = ta.value; save(); };
+    $("#snips").appendChild(b);
+  });
+  updateMeter();
+}
+
+
+/* ============ صفحة إنجازاتي ============ */
+function drawCert(cv, name){
+  const W = 1600, H = 1130; cv.width = W; cv.height = H;
+  const c = cv.getContext("2d");
+  c.fillStyle = "#FBFCFE"; c.fillRect(0,0,W,H);
+  c.strokeStyle = "#1B2A41"; c.lineWidth = 14; c.strokeRect(40,40,W-80,H-80);
+  c.strokeStyle = "#F6C945"; c.lineWidth = 4; c.strokeRect(66,66,W-132,H-132);
+  const x = W/2-36, y = 110;
+  c.fillStyle = "#3B6EA5"; c.beginPath(); c.moveTo(x,y); c.lineTo(x+72,y); c.lineTo(x,y+72); c.closePath(); c.fill();
+  c.fillStyle = "#F6C945"; c.beginPath(); c.moveTo(x+72,y); c.lineTo(x+72,y+72); c.lineTo(x,y+72); c.closePath(); c.fill();
+  c.direction = "rtl"; c.textAlign = "center"; c.textBaseline = "alphabetic";
+  const F = '"Segoe UI",Tahoma,"Noto Naskh Arabic",sans-serif';
+  const line = (t,yy,size,w,col)=>{ c.font = `${w} ${size}px ${F}`; c.fillStyle = col; c.fillText(t, W/2, yy); };
+  line("تعلم بايثون", 270, 52, 800, "#1B2A41");
+  line("شهادة إتمام", 390, 100, 900, "#3B6EA5");
+  line("تشهد المنصة بأن", 480, 38, 400, "#58677A");
+  line(name || "اسمك هنا", 620, 104, 800, "#1B2A41");
+  c.fillStyle = "#F6C945"; c.fillRect(W/2-380, 650, 760, 5);
+  line("قد أتمّ بنجاح دورة", 735, 40, 400, "#58677A");
+  line("بايثون من الصفر إلى الاحتراف", 820, 64, 800, "#1B2A41");
+  line(`${LESSONS.length} درساً  ·  ${S.ch.size} تحديات برمجية  ·  ${xp()} نقطة`, 905, 36, 400, "#58677A");
+  line(new Date().toLocaleDateString("ar-EG",{year:"numeric",month:"long",day:"numeric"}), 1005, 34, 400, "#58677A");
+}
+function viewMe(){
+  setTabs("me"); window.scrollTo(0,0);
+  const pct = Math.round(S.done.size/LESSONS.length*100);
+  const left = LESSONS.length - S.done.size;
+  const earned = BADGES.filter(b=>S.badges.has(b.id)).length;
+  app.innerHTML = `<div class="wrap page">
+    <h2 class="sec">إنجازاتي</h2>
+    <div class="strip"><div><b>${xp()}</b><span>نقطة</span></div><div><b>${plvl()}</b><span>مستواك</span></div><div><b>${S.streak}</b><span>أيام متتالية</span></div><div><b>${earned}/${BADGES.length}</b><span>شارات</span></div></div>
+
+    <h2 class="sec">الشارات</h2>
+    <div class="badges">${BADGES.map(b=>`<div class="badge ${S.badges.has(b.id)?"":"off"}"><span class="ic">${b.ic}</span><b>${b.name}</b><span>${b.desc}</span></div>`).join("")}</div>
+
+    <h2 class="sec">شهادة الإتمام</h2>
+    <div id="certBox"></div>
+
+    <h2 class="sec">حفظ التقدّم</h2>
+    <p class="note" id="saveNote"></p>
+    <p class="sub">لنقل تقدّمك إلى جهاز آخر: انسخ الكود من الزر، ثم الصقه في نفس الصفحة على الجهاز الجديد واضغط «استرجاع».</p>
+    <div class="row"><button class="btn" id="exp">انسخ كود التقدّم</button></div>
+    <textarea class="field" id="imp" placeholder="الصق كود التقدّم هنا" aria-label="كود التقدّم"></textarea>
+    <div class="row"><button class="btn alt" id="impBtn">استرجاع</button><button class="btn alt" id="rst">مسح تقدّمي</button></div>
+  </div>`;
+  const cb = $("#certBox");
+  if(S.done.size >= LESSONS.length){
+    cb.innerHTML = `<p class="sub">مبروك! أكملت كل الدروس. اكتب اسمك كما تريده على الشهادة ثم نزّلها.</p>
+      <input class="field" id="cname" maxlength="40" placeholder="اسمك على الشهادة" value="${esc(S.name)}" aria-label="الاسم على الشهادة">
+      <canvas id="cv" aria-label="معاينة الشهادة"></canvas>
+      <div class="row"><button class="btn gold" id="dl">تنزيل الشهادة (PNG)</button></div>`;
+    const cv = $("#cv"), inp = $("#cname");
+    drawCert(cv, S.name);
+    inp.addEventListener("input", ()=>{ S.name = inp.value.trim(); drawCert(cv, S.name); save(); });
+    $("#dl").onclick = ()=>{
+      const a = document.createElement("a"); a.href = cv.toDataURL("image/png"); a.download = "تعلم-بايثون-شهادة.png"; a.click();
+    };
+  }else{
+    cb.innerHTML = `<p class="sub">الشهادة تُفتح عند إكمال كل الدروس. متبقٍّ ${left} ${left===1?"درس":"دروس"}.</p><div class="pbar"><i style="width:${pct}%"></i></div><div class="row"><button class="btn" data-go="/">تابع التعلّم</button></div>`;
+  }
+  $("#saveNote").textContent = canStore
+    ? "تقدّمك يُحفظ تلقائياً في هذا المتصفح، فيبقى حتى بعد إغلاق الصفحة."
+    : "متصفحك لا يسمح بالحفظ التلقائي الآن. انسخ كود التقدّم أدناه واحتفظ به.";
+  $("#exp").onclick = async()=>{
+    const code = btoa(unescape(encodeURIComponent(JSON.stringify(snapshot()))));
+    try{ await navigator.clipboard.writeText(code); toast("تم نسخ كود التقدّم"); }
+    catch(e){ $("#imp").value = code; toast("انسخ الكود من الخانة"); }
+  };
+  $("#impBtn").onclick = ()=>{
+    try{
+      const o = JSON.parse(decodeURIComponent(escape(atob($("#imp").value.trim()))));
+      apply(o); checkBadges(true); save(); updateMeter(); toast("تم استرجاع تقدّمك"); viewMe();
+    }catch(e){ toast("الكود غير صحيح"); }
+  };
+  $("#rst").onclick = ()=>{
+    if(confirm("هل تريد مسح كل تقدّمك؟ لا يمكن التراجع.")){
+      apply({}); save(); updateMeter(); toast("تم المسح"); viewMe();
+    }
+  };
+  updateMeter();
+}
+
+/* ============ تشغيل ============ */
+let theme = null;
+try{ theme = localStorage.getItem("lws_theme"); }catch(e){}
+if(!theme) theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+document.documentElement.dataset.theme = theme;
+$("#themeBtn").onclick = ()=>{
+  theme = theme==="dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = theme;
+  try{ localStorage.setItem("lws_theme", theme); }catch(e){}
+};
+load(); checkBadges(true); updateMeter();
+render(location.hash.slice(1) || "/");
 </script>
 </body>
 </html>
